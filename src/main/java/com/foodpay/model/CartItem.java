@@ -1,5 +1,6 @@
 package com.foodpay.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,23 +12,28 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderItem {
+@Table(name = "cartItem")
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "order_item_id")
+    @Column(name = "cart_item_id")
     private long id;
 
+    @JsonIgnore
     @ManyToOne
-    @Column(name = "order_item_food")
+    @Column(name = "cart_item_cart")
+    private Cart cart;
+
+    @ManyToOne
+    @Column(name = "cart_item_food")
     private Food food;
 
-    @Column(name = "order_item_quantity")
+    @Column(name = "cart_item_quan")
     private int quantity;
 
-    @Column(name = "order_item_totalPrice")
-    private long totalPrice;
-
-    @Column(name = "order_item_ingredients")
+    @Column(name = "cart_item_ingr")
     private List<String> ingredients;
 
+    @Column(name = "cart_item_totalPri")
+    private long totalPrice;
 }
