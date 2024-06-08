@@ -5,26 +5,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Entity
+
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "contact")
 public class Contact {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "cont_id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long cont_id;
 
-    @Column(name = "cont_email")
-    private String email;
+    private String cont_email;
 
-    @Column(name = "cont_mob")
-    private String mobile;
+    private String cont_mob;
 
-    @Column(name = "cont_twi")
-    private String twitter;
+    private String cont_twi;
 
+    private String cont_ins;
 
 
 

@@ -13,48 +13,37 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "table")
+@Table(name = "food")
 public class Food {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "food_id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long food_id;
 
-    @Column(name = "food_name")
-    private String name;
+    private String food_name;
 
-    @Column(name = "food_desc")
-    private String description;
+    private String food_desc;
 
-    @Column(name = "food_price")
-    private long price;
+    private long food_pri;
 
     @ManyToOne
-    @Column(name = "food_cat")
-    private Category category;
+    private Category food_cat;
 
     @ElementCollection
-    @Column(name = "food_img", length = 1000)
-    private List<String> image;
+    @Column(length = 1000)
+    private List<String> food_img;
 
-    @Column(name = "food_isAvaliable")
-    private boolean available;
+    private boolean food_ava;
 
     @ManyToOne
-    @Column(name = "food_rest")
-    private Restaurant restaurant;
+    private Restaurant food_rest;
 
-    @Column(name = "food_isVegetarian")
-    private boolean isVegetarian;
+    private boolean food_is_vege;
 
-    @Column(name = "food_isSeasonal")
-    private boolean isSeasonal;
+    private boolean food_is_seas;
 
     @ManyToMany
-    @Column(name = "food_ingred")
-    private List<IngredientItem> ingredient = new ArrayList<>();
+    private List<IngredientItem> food_ingr = new ArrayList<>();
 
-    @Column(name = "food_cre_date")
-    private Date creationDate;
+    private Date food_crea_date;
 
 }

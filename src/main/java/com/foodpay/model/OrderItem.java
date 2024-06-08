@@ -11,23 +11,19 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "orderItem  ")
 public class OrderItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "order_item_id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long ordr_id;
 
     @ManyToOne
-    @Column(name = "order_item_food")
-    private Food food;
+    private Food ordr_food;
 
-    @Column(name = "order_item_quantity")
-    private int quantity;
+    private int ordr_quan;
 
-    @Column(name = "order_item_totalPrice")
-    private long totalPrice;
+    private long ordr_tot_pri;
 
-    @Column(name = "order_item_ingredients")
-    private List<String> ingredients;
+    private List<String> ordr_ingr;
 
 }

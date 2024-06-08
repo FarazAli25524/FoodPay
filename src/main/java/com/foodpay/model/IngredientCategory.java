@@ -16,20 +16,15 @@ import java.util.List;
 @Table(name = "ingredientCategory")
 public class IngredientCategory {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ingre_cat_id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long ing_cat_id;
 
-    @Column(name = "ingre_cat_name")
-    private String name;
+    private String ing_cat_name;
 
     @JsonIgnore
     @ManyToOne
-    @Column(name = "ingre_cat_res")
-    private Restaurant restaurant;
+    private Restaurant ing_cat_res;
 
-
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    @Column(name = "ingre_cat_ingreItem")
-    private List<IngredientItem> ingredients = new ArrayList<IngredientItem>();;
+    @OneToMany(mappedBy = "ing_item_cat", cascade = CascadeType.ALL)
+    private List<IngredientItem> ing_cat_ing_item = new ArrayList<>();
 }

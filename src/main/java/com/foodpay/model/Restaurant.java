@@ -17,52 +17,40 @@ import java.util.List;
 @Table(name = "restaurant")
 public class Restaurant {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "res_id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long rest_id;
 
     @OneToOne
-    @Column(name = "res_owner")
-    private User owner;
+    private User rest_owner;
 
-    @Column(name = "res_name")
-    private String name;
+    private String rest_name;
 
-    @Column(name = "res_desc")
-    private String description;
+    private String rest_desc;
 
-    @Column(name = "res_cui_type")
-    private String cuisineType;
+    private String rest_cuis_type;
 
     @OneToOne
-    @Column(name = "res_addr")
-    private Address address;
+    private Address rest_addr;
 
-    @Embedded
-    @Column(name = "res_cont")
-    private Contact contact;
+    @OneToOne
+    private Contact rest_cont;
 
-    @Column(name = "res_openhrs")
-    private String openhrs;
+    private String rest_open_hrs;
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Column(name = "res_ordr")
-    private List<Order> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "ordr_rest", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> rest_ordr = new ArrayList<>();
 
     @ElementCollection
-    @Column(name = "res_img", length = 1000)
-    private List<String> image;
+    @Column(length = 1000)
+    private List<String> rest_img;
 
-    @Column(name = "res_reg")
-    private LocalDateTime registrationDate;
+    private LocalDateTime rest_reg_date;
 
-    @Column(name = "res_open")
-    private boolean resOpen;
+    private boolean rest_open;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-    @Column(name = "res_food")
-    private  List<Food> food = new ArrayList<>();
+    @OneToMany(mappedBy = "food_rest", cascade = CascadeType.ALL)
+    private  List<Food> rest_food = new ArrayList<>();
 
 
 }

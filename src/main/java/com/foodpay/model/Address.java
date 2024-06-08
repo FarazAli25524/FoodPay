@@ -12,8 +12,19 @@ import lombok.NoArgsConstructor;
 @Table(name = "address")
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long addr_id;
 
+    private String addr_strt_1;
+
+    private String addr_strt_2;
+
+    private String addr_city;
+
+    private String addr_state;
+
+    private String addr_zip;
+
+    private String addr_country;
 
 }

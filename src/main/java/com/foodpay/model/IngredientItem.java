@@ -13,19 +13,17 @@ import lombok.NoArgsConstructor;
 @Table(name = "ingredientItem")
 public class IngredientItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ingr_id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long ing_item_id;
 
-    @Column(name = "ingr_name")
-    private String name;
+    private String ing_item_name;
 
     @ManyToOne
-    private IngredientCategory category;
+    private IngredientCategory ing_item_cat;
 
     @JsonIgnore
     @ManyToOne
-    private Restaurant restaurant;
+    private Restaurant ing_item_res;
 
-    private boolean inStock = false;
+    private boolean ing_in_stk = false;
 }

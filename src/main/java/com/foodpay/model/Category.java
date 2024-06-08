@@ -13,17 +13,14 @@ import lombok.NoArgsConstructor;
 @Table(name = "category")
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "cat_id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long cat_id;
 
-    @Column(name = "cat_name")
-    private String name;
+    private String cat_name;
 
     @JsonIgnore
     @ManyToOne
-    @Column(name = "cat_res")
-    private Restaurant restaurant;
+    private Restaurant cat_rest;
 
 
 

@@ -16,44 +16,33 @@ import java.util.List;
 @Table(name  = "order")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "order_id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long ordr_id;
 
     @ManyToOne
-    @Column(name = "order_cust")
-    private User customer;
+    private User ordr_cust;
 
     @JsonIgnore
     @ManyToOne
-    @Column(name = "order_rest")
-    private Restaurant restaurant;
+    private Restaurant ordr_rest;
 
-    @Column(name = "order_totalAmount")
-    private long totalAmount;
+    private long ordr_tot_amount;
 
-    @Column(name = "order_status")
-    private String orderStatus;
+    private String ordr_stat;
 
-    @Column(name = "order_createdAt")
-    private Date createdAt;
+    private Date ordr_crea_date;
 
     @JsonIgnore
     @ManyToOne
-    @Column(name = "order_deliveryAddress")
-    private Address deliveryAddress;
+    private Address ordr_del_addr;
 
     @OneToMany
-    @Column(name = "order_items")
-    private List<OrderItem> items;
+    private List<OrderItem> ordr_item;
 
-//    @Column(name = "order_paymentMethod")
-//    private Payment payment;
+//    private Payment ordr_paym;
 
-    @Column(name = "order_totalItem")
-    private int totalItem;
+    private int ordr_tot_item;
 
-    @Column(name = "order_totalPrice")
-    private int totalPrice;
+    private int ordr_tot_pri;
 
 }

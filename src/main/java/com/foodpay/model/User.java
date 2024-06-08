@@ -17,36 +17,25 @@ import java.util.List;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long user_id;
 
-    @Column(name = "user_fullname")
-    private String fullname;
+    private String user_full_name;
 
-    @Column(name = "user_email")
-    private String email;
+    private String user_email;
 
-    @Column(name = "user_password")
-    private String password;
+    private String user_pass;
 
-    @Column(name = "user_role")
-    private USER_ROLE role;
+    private USER_ROLE user_role;
 
     @JsonIgnore
     @OneToMany
-    @Column(name = "user_order")
-    private List<Order> orders = new ArrayList<>();
-
+    private List<Order> user_ords = new ArrayList<>();
 
     @ElementCollection
-    @Column(name = "user_favorite")
-    private List<RestaurantDto> favorites = new ArrayList<>();
+    private List<RestaurantDto> user_favr = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-    @Column(name = "user_address")
-    private List<Address> addresses = new ArrayList<>();
-
-
+    @OneToMany( mappedBy = "addr_id", cascade = CascadeType.ALL)
+    private List<Address> user_addr = new ArrayList<>();
 }

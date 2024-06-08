@@ -15,18 +15,14 @@ import java.util.List;
 @Table(name = "cart")
 public class Cart {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "cart_id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long cart_id;
 
     @OneToOne
-    @Column(name = "cart_user")
-    private User customer;
+    private User cart_cus_id;
 
-    @Column(name = "cart_total")
-    private long total;
+    private long cart_total;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Column(name = "cart_item")
-    private List<CartItem> item = new ArrayList<>();
+    @OneToMany(mappedBy = "cart_itm_cart_id", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartItem> cart_item = new ArrayList<>();
 }

@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 @Entity
@@ -15,25 +14,19 @@ import java.util.List;
 @Table(name = "cartItem")
 public class CartItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "cart_item_id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long cart_itm_id;
 
     @JsonIgnore
     @ManyToOne
-    @Column(name = "cart_item_cart")
-    private Cart cart;
+    private Cart cart_itm_cart_id;
 
     @ManyToOne
-    @Column(name = "cart_item_food")
-    private Food food;
+    private Food cart_itm_food_id;
 
-    @Column(name = "cart_item_quan")
-    private int quantity;
+    private int cart_itm_qty;
 
-    @Column(name = "cart_item_ingr")
-    private List<String> ingredients;
+    private List<String> cart_itm_ingr;
 
-    @Column(name = "cart_item_totalPri")
-    private long totalPrice;
+    private long cart_itm_tot_pri;
 }
