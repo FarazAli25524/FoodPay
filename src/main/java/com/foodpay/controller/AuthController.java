@@ -80,6 +80,7 @@ public class AuthController {
     }
 
     private Authentication Authenticate(String userEmail, String userPassword) {
-        UserDetails userDetails = customUserDetailsService.loadUserByUsername()
+        UserDetails userDetails = customUserDetailsService.loadUserByUsername(userEmail);
+        return null;
     }
 }
