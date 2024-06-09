@@ -13,36 +13,36 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name  = "order")
+@Table(name  = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ordr_id;
+    private long id;
 
     @ManyToOne
-    private User ordr_cust;
+    private User customer;
 
     @JsonIgnore
     @ManyToOne
-    private Restaurant ordr_rest;
+    private Restaurant restaurant;
 
-    private long ordr_tot_amount;
+    private long totalAmount;
 
-    private String ordr_stat;
+    private String status;
 
-    private Date ordr_crea_date;
+    private Date createdDate;
 
     @JsonIgnore
     @ManyToOne
-    private Address ordr_del_addr;
+    private Address address;
 
     @OneToMany
-    private List<OrderItem> ordr_item;
+    private List<OrderItem> orderItem;
 
 //    private Payment ordr_paym;
 
-    private int ordr_tot_item;
+    private int totalItems;
 
-    private int ordr_tot_pri;
+    private int totalPrice;
 
 }

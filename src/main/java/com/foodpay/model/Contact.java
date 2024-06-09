@@ -14,15 +14,15 @@ import lombok.NoArgsConstructor;
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cont_id;
+    private long id;
 
-    private String cont_email;
+    private String email;
 
-    private String cont_mob;
+    private String mobile;
 
-    private String cont_twi;
+    private String twitter;
 
-    private String cont_ins;
+    private String instagram;
 
 
 

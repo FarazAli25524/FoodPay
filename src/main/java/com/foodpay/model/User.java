@@ -18,24 +18,24 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long user_id;
+    private long id;
 
-    private String user_full_name;
+    private String name;
 
-    private String user_email;
+    private String email;
 
-    private String user_pass;
+    private String password;
 
-    private USER_ROLE user_role;
+    private USER_ROLE role = USER_ROLE.ROLE_CUSTOMER;
 
     @JsonIgnore
     @OneToMany
-    private List<Order> user_ords = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     @ElementCollection
-    private List<RestaurantDto> user_favr = new ArrayList<>();
+    private List<RestaurantDto> favorites = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany( mappedBy = "addr_id", cascade = CascadeType.ALL)
-    private List<Address> user_addr = new ArrayList<>();
+    @OneToMany( mappedBy = "id", cascade = CascadeType.ALL)
+    private List<Address> addresses = new ArrayList<>();
 }

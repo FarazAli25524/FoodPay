@@ -14,16 +14,16 @@ import lombok.NoArgsConstructor;
 public class IngredientItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ing_item_id;
+    private long id;
 
-    private String ing_item_name;
+    private String name;
 
     @ManyToOne
-    private IngredientCategory ing_item_cat;
+    private IngredientCategory category;
 
     @JsonIgnore
     @ManyToOne
-    private Restaurant ing_item_res;
+    private Restaurant restaurant;
 
-    private boolean ing_in_stk = false;
+    private boolean stock = false;
 }

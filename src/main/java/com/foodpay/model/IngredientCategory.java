@@ -17,14 +17,14 @@ import java.util.List;
 public class IngredientCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ing_cat_id;
+    private long id;
 
-    private String ing_cat_name;
+    private String description;
 
     @JsonIgnore
     @ManyToOne
-    private Restaurant ing_cat_res;
+    private Restaurant restaurant;
 
-    @OneToMany(mappedBy = "ing_item_cat", cascade = CascadeType.ALL)
-    private List<IngredientItem> ing_cat_ing_item = new ArrayList<>();
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<IngredientItem> ingredientItems = new ArrayList<>();
 }

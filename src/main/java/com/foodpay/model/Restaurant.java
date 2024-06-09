@@ -18,39 +18,39 @@ import java.util.List;
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long rest_id;
+    private long id;
 
     @OneToOne
-    private User rest_owner;
+    private User owner;
 
-    private String rest_name;
+    private String name;
 
-    private String rest_desc;
+    private String description;
 
-    private String rest_cuis_type;
-
-    @OneToOne
-    private Address rest_addr;
+    private String cuisineType;
 
     @OneToOne
-    private Contact rest_cont;
+    private Address address;
 
-    private String rest_open_hrs;
+    @OneToOne
+    private Contact contact;
 
-    @OneToMany(mappedBy = "ordr_rest", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> rest_ordr = new ArrayList<>();
+    private String openHours;
+
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
 
     @ElementCollection
     @Column(length = 1000)
-    private List<String> rest_img;
+    private List<String> image;
 
-    private LocalDateTime rest_reg_date;
+    private LocalDateTime registrationDate;
 
-    private boolean rest_open;
+    private boolean open;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "food_rest", cascade = CascadeType.ALL)
-    private  List<Food> rest_food = new ArrayList<>();
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    private  List<Food> restaurant = new ArrayList<>();
 
 
 }

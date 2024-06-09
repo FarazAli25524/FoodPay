@@ -14,13 +14,13 @@ import lombok.NoArgsConstructor;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cat_id;
+    private long id;
 
-    private String cat_name;
+    private String name;
 
     @JsonIgnore
     @ManyToOne
-    private Restaurant cat_rest;
+    private Restaurant restaurant;
 
 
 

@@ -17,33 +17,33 @@ import java.util.List;
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long food_id;
+    private long id;
 
-    private String food_name;
+    private String name;
 
-    private String food_desc;
+    private String description;
 
-    private long food_pri;
+    private long price;
 
     @ManyToOne
-    private Category food_cat;
+    private Category category;
 
     @ElementCollection
     @Column(length = 1000)
-    private List<String> food_img;
+    private List<String> img;
 
-    private boolean food_ava;
+    private boolean available;
 
     @ManyToOne
-    private Restaurant food_rest;
+    private Restaurant restaurant;
 
-    private boolean food_is_vege;
+    private boolean vegetarian;
 
-    private boolean food_is_seas;
+    private boolean seasonal;
 
     @ManyToMany
-    private List<IngredientItem> food_ingr = new ArrayList<>();
+    private List<IngredientItem> ingredients = new ArrayList<>();
 
-    private Date food_crea_date;
+    private Date createdDate;
 
 }
