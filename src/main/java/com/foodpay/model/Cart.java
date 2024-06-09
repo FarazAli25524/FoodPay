@@ -16,13 +16,13 @@ import java.util.List;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cart_id;
+    private long id;
 
     @OneToOne
-    private User cart_cus_id;
+    private User customer;
 
-    private long cart_total;
+    private long total;
 
-    @OneToMany(mappedBy = "cart_itm_cart_id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartItem> cart_item = new ArrayList<>();
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartItem> cartItems = new ArrayList<>();
 }

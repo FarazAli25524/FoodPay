@@ -13,18 +13,18 @@ import lombok.NoArgsConstructor;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long addr_id;
+    private long id;
 
-    private String addr_strt_1;
+    private String street1;
 
-    private String addr_strt_2;
+    private String street2;
 
-    private String addr_city;
+    private String city;
 
-    private String addr_state;
+    private String state;
 
-    private String addr_zip;
+    private int zip;
 
-    private String addr_country;
+    private String country;
 
 }

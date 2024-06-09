@@ -11,19 +11,19 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "orderItem  ")
+@Table(name = "orderItem")
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ordr_id;
+    private long id;
 
     @ManyToOne
-    private Food ordr_food;
+    private Food food;
 
-    private int ordr_quan;
+    private int quantity;
 
-    private long ordr_tot_pri;
+    private long totalPrice;
 
-    private List<String> ordr_ingr;
+    private List<String> ingredients;
 
 }

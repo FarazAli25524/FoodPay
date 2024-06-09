@@ -15,18 +15,18 @@ import java.util.List;
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cart_itm_id;
+    private long id;
 
     @JsonIgnore
     @ManyToOne
-    private Cart cart_itm_cart_id;
+    private Cart cart;
 
     @ManyToOne
-    private Food cart_itm_food_id;
+    private Food food;
 
-    private int cart_itm_qty;
+    private int quantity;
 
-    private List<String> cart_itm_ingr;
+    private List<String> ingredients;
 
-    private long cart_itm_tot_pri;
+    private long totalPrice;
 }
