@@ -1,6 +1,7 @@
 package com.foodpay.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.foodpay.dto.RestaurantDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,18 +25,19 @@ public class User {
 
     private String email;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     private USER_ROLE role = USER_ROLE.ROLE_CUSTOMER;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 
     @ElementCollection
     private List<RestaurantDto> favorites = new ArrayList<>();
 
-    @JsonIgnore
+//    @JsonIgnore
     @OneToMany( mappedBy = "id", cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
 }
