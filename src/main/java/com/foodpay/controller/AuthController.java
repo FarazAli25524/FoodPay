@@ -2,6 +2,7 @@ package com.foodpay.controller;
 
 import com.foodpay.config.JwtProvider;
 import com.foodpay.model.Cart;
+import com.foodpay.model.USER_ROLE;
 import com.foodpay.model.User;
 import com.foodpay.repository.CartRepository;
 import com.foodpay.repository.UserRepository;
@@ -11,15 +12,20 @@ import com.foodpay.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/auth")
@@ -71,16 +77,37 @@ public class AuthController {
         return new ResponseEntity<>(authResponse, HttpStatus.CREATED);
     }
 
+    @PostMapping("/signin")
     public ResponseEntity<AuthResponse> signIn(@RequestBody LoginRequest req){
         String userEmail = req.getEmail();
         String userPassword = req.getPassword();
 
         Authentication authentication = Authenticate(userEmail, userPassword);
-        return null;
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        String role = authorities.isEmpty() ? null : authorities.iterator().next().getAuthority();
+        String jwt = jwtProvider.generateToken(authentication);
+
+        // Operate Auth Response
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setJwt(jwt);
+        authResponse.setMessage("Register success.");
+        authResponse.setRole(USER_ROLE.valueOf(role));
+
+        return new ResponseEntity<>(authResponse, HttpStatus.OK);
     }
+
 
     private Authentication Authenticate(String userEmail, String userPassword) {
         UserDetails userDetails = customUserDetailsService.loadUserByUsername(userEmail);
-        return null;
+
+        if(userDetails == null){
+            throw new UsernameNotFoundException("Invalid username.");
+        }
+
+        if(!passwordEncoder.matches(userPassword, userDetails.getPassword())){
+            throw new BadCredentialsException("Invalid password.");
+        }
+        return new UsernamePasswordAuthenticationToken(userEmail, null, userDetails.getAuthorities());
+
     }
 }
