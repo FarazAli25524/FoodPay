@@ -13,7 +13,6 @@ import com.foodpay.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -42,9 +41,9 @@ public class RestaurantServiceImpl implements RestaurantService {
         restaurant.setContact(req.getContact());
         restaurant.setCuisineType(req.getCuisineType());
         restaurant.setDescription(req.getDescription());
-        restaurant.setImage(req.getImages());
+        restaurant.setImages(req.getImages());
         restaurant.setName(req.getName());
-        restaurant.setOpenHours(req.getOpeningHours());
+        restaurant.setOpenHours(req.getOpenHours());
         restaurant.setRegistrationDate(LocalDateTime.now());
         restaurant.setOwner(user);
 
@@ -97,7 +96,8 @@ public class RestaurantServiceImpl implements RestaurantService {
         Restaurant restaurant = restaurantRepository.findByOwnerId(id);
         if(restaurant == null)
             throw new Exception("Restaurant Owner not found!");
-        return restaurant;
+        else
+            return restaurant;
     }
 
     @Override
@@ -105,12 +105,14 @@ public class RestaurantServiceImpl implements RestaurantService {
         Restaurant restaurant = findRestaurantById(restaurantId);
         RestaurantDto restaurantDto = new RestaurantDto();
         restaurantDto.setDescription(restaurant.getDescription());
-        restaurantDto.setImages(restaurant.getImage());
+        restaurantDto.setImages(restaurant.getImages());
         restaurantDto.setTitle(restaurant.getName());
         restaurantDto.setId(restaurant.getId());
 
-        if(user.getFavorites().contains(restaurantDto))
-            user.getFavorites().remove(restaurantDto);
+        boolean isFavorite = user.getFavorites().stream().anyMatch(fav -> (fav.getId()==restaurantDto.getId()));
+
+        if(isFavorite)
+            user.getFavorites().removeIf(fav -> (fav.getId() == restaurant.getId()));
         else
             user.getFavorites().add(restaurantDto);
         userRepository.save(user);
