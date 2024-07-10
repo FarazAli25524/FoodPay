@@ -19,7 +19,7 @@ public class IngredientCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String description;
+    private String name;
 
     @JsonIgnore
     @ManyToOne
