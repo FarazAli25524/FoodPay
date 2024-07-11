@@ -39,7 +39,7 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public void deleteFood(long id) throws Exception {
-        Food food = findFoodNyId(id);
+        Food food = findFoodById(id);
         food.setRestaurant(null);
         foodRepository.save(food);
 
@@ -93,7 +93,7 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public Food findFoodNyId(long id) throws Exception {
+    public Food findFoodById(long id) throws Exception {
         Optional<Food> optionalFood = foodRepository.findById(id);
 
         if(optionalFood.isEmpty()){
@@ -104,7 +104,7 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public Food updateAvailabilityStatus(long id) throws Exception {
-        Food food = findFoodNyId(id);
+        Food food = findFoodById(id);
         food.setAvailable(!food.isAvailable());
         return foodRepository.save(food);
     }
