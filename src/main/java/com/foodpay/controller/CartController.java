@@ -19,7 +19,7 @@ public class CartController {
     private CartService cartService;
 
     @Autowired
-    private UserService userService
+    private UserService userService;
 
     @PutMapping("/cart/add")
     public ResponseEntity<CartItem> addItemToCart(
