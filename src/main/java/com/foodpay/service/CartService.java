@@ -10,6 +10,6 @@ public interface CartService {
     public Cart removeItemFromCart(long cartItemId, String jwt) throws Exception;
     public long calculateCartTotal(Cart cart) throws Exception;
     public Cart findCartById(long id) throws Exception;
-    public Cart findCartByUserId(String jwt) throws Exception;
-    public Cart clearCart(String jwt) throws Exception;
+    public Cart findCartByUserId(long id) throws Exception;
+    public Cart clearCart(long id) throws Exception;
 }
